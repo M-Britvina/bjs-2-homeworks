@@ -74,13 +74,10 @@ class Library {
 		return book === undefined ? null : book;
 	}
 	giveBookByName(bookName) {
-		const index = this.books.findIndex(item => item.name === bookName);
-		if (index >= 0) {
-			const book = this.books[index];
-			this.books.splice(index, 1);
-			return book;
-		}
-		return null;
+		const book = this.findBookBy("name", bookName);
+		if (!book) return null;
+		this.books = this.books.filter((item) => item.name !== bookName);
+		return book;
 	}
 }
 
